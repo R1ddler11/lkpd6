@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Interaktif - Media Pembelajaran</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 min-h-screen">
+
+    <!-- Navbar -->
+    <nav class="bg-blue-600 text-white p-4 flex justify-between items-center">
+        <h1 class="font-bold">E-Learning</h1>
+        <ul class="flex space-x-4">
+            <li><button onclick="switchTab('home')" class="hover:text-gray-200">Home</button></li>
+            <li><button onclick="switchTab('materi')" class="hover:text-gray-200">Materi</button></li>
+            <li><button onclick="switchTab('quiz')" class="hover:text-gray-200">Quiz</button></li>
+            <li><button onclick="switchTab('diskusi')" class="hover:text-gray-200">Diskusi</button></li>
+            <li><a href="#" class="hover:text-gray-200">Sumber</a></li>
+        </ul>
+    </nav>
+
+    <main class="max-w-4xl mx-auto mt-6 space-y-6 px-4">
+
+        <!-- Cards: Materi + Quiz -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <!-- Card: Materi -->
+            <div class="bg-white p-6 rounded-xl shadow-md">
+                <h2 class="font-bold text-lg mb-2">Judul Materi</h2>
+                <p class="text-gray-600 mb-4">Pengenalan IPA — konsep dasar sains, metode ilmiah, dan percobaan sederhana.</p>
+                <div class="flex gap-3">
+                    <button onclick="switchTab('materi')"
+                        class="bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700 transition">Baca Materi</button>
+                    <button onclick="switchTab('quiz')"
+                        class="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition">Mulai Quiz</button>
+                </div>
+            </div>
+
+            <!-- Card: Ringkasan Cepat -->
+            <div class="bg-white p-6 rounded-xl shadow-md">
+                <h2 class="font-bold text-lg mb-2">Ringkasan Cepat</h2>
+                <ul class="list-disc list-inside text-gray-700">
+                    <li>Observasi dan pengukuran</li>
+                    <li>Gunakan metode ilmiah: hipotesis, percobaan, kesimpulan</li>
+                    <li>Catat hasil dengan teliti</li>
+                </ul>
+                <p class="text-sm text-gray-500 mt-4">Gunakan tab di bawah untuk mengganti antara Materi dan Forum Diskusi.</p>
+            </div>
+        </div>
+
+        <!-- Tabs -->
+        <div class="bg-white rounded-xl shadow-md">
+            <div class="flex border-b">
+                <button id="tab-btn-home" onclick="switchTab('home')" class="flex-1 p-3 text-left hover:bg-gray-100">Home</button>
+                <button id="tab-btn-materi" onclick="switchTab('materi')" class="flex-1 p-3 text-left hover:bg-gray-100">Materi</button>
+                <button id="tab-btn-quiz" onclick="switchTab('quiz')" class="flex-1 p-3 text-left hover:bg-gray-100">Quiz</button>
+                <button id="tab-btn-diskusi" onclick="switchTab('diskusi')" class="flex-1 p-3 text-left hover:bg-gray-100">Forum Diskusi</button>
+                <button id="tab-btn-rekap" onclick="switchTab('rekap')" class="flex-1 p-3 text-left hover:bg-gray-100">Rekap Nilai</button>
+            </div>
+
+            <div class="p-6">
+                <!-- Home Content -->
+                <section id="tab-home" class="tab-content">
+                    <h3 class="font-bold text-xl mb-2">Selamat datang</h3>
+                    <p class="text-gray-600">Pilih Materi untuk membaca penjelasan atau Mulai Quiz untuk menguji pemahamanmu.</p>
+                </section>
+
+                <!-- Materi Content -->
+                <section id="tab-materi" class="tab-content hidden">
+                    <h3 class="font-bold text-xl mb-3">Pengenalan HTML</h3>
+                    <p class="text-gray-700 mb-3">HTML (HyperText Markup Language) adalah bahasa markup untuk membuat halaman web. Struktur dasar:
+                    </p>
+                    <pre class="bg-gray-100 p-3 rounded text-sm overflow-auto">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+    &lt;head&gt;...&lt;/head&gt;
+    &lt;body&gt;...&lt;/body&gt;
+&lt;/html&gt;</pre>
+                    <p class="mt-3 text-gray-700">Contoh tag paragraf: &lt;p&gt;Ini paragraf&lt;/p&gt;.</p>
+                    <button onclick="switchTab('quiz')"
+                        class="mt-4 bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition">Coba Quiz</button>
+                </section>
+
+                <!-- Quiz Content -->
+                <section id="tab-quiz" class="tab-content hidden">
+                    <h3 class="font-bold text-xl mb-3">Quiz Interaktif</h3>
+                    <form id="quiz-form" class="space-y-3" onsubmit="event.preventDefault(); checkQuiz();">
+                        <p class="text-gray-800">1. Tag HTML untuk paragraf adalah?</p>
+                        <div class="space-y-2">
+                            <label class="flex items-center gap-2">
+                                <input type="radio" name="q1" value="p" class="form-radio">
+                                <span>&lt;p&gt;</span>
+                            </label>
+                            <label class="flex items-center gap-2">
+                                <input type="radio" name="q1" value="div" class="form-radio">
+                                <span>&lt;div&gt;</span>
+                            </label>
+                            <label class="flex items-center gap-2">
+                                <input type="radio" name="q1" value="span" class="form-radio">
+                                <span>&lt;span&gt;</span>
+                            </label>
+                            <label class="flex items-center gap-2">
+                                <input type="radio" name="q1" value="h1" class="form-radio">
+                                <span>&lt;h1&gt;</span>
+                            </label>
+                        </div>
+                        <div>
+                            <button type="submit" class="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700">Periksa Jawaban</button>
+                            <button type="button" onclick="resetQuiz()" class="ml-2 bg-gray-200 px-3 py-2 rounded">Reset</button>
+                        </div>
+                        <p id="quiz-result" class="mt-2 font-medium"></p>
+                    </form>
+                </section>
+
+                <!-- Diskusi Content -->
+                <section id="tab-diskusi" class="tab-content hidden">
+                    <h3 class="font-bold text-xl mb-3">Forum Diskusi</h3>
+                    <form id="forum-form" class="space-y-3" onsubmit="event.preventDefault(); postMessage();">
+                        <input id="name" type="text" placeholder="Nama" required
+                            class="w-full p-2 border rounded"/>
+                        <textarea id="message" rows="3" placeholder="Tulis pertanyaan atau komentar..." required
+                            class="w-full p-2 border rounded"></textarea>
+                        <div class="flex gap-2">
+                            <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Kirim</button>
+                            <button type="button" onclick="clearForum()" class="bg-gray-200 px-3 py-2 rounded">Bersihkan</button>
+                        </div>
+                    </form>
+
+                    <div id="posts" class="mt-6 space-y-4">
+                        <!-- posted messages will appear here -->
+                        <p class="text-gray-500">Belum ada diskusi. Jadilah yang pertama.</p>
+                    </div>
+                </section>
+
+                <!-- Rekap Nilai Content (ditambahkan) -->
+                <section id="tab-rekap" class="tab-content hidden">
+                  <div class="min-h-screen flex justify-center items-center">
+                    <div class="bg-white rounded-lg p-5 w-full max-w-3xl shadow-md">
+                      <h1 class="font-bold uppercase text-4xl text-center mb-8">Rekap Nilai</h1>
+
+                      <div class="overflow-x-auto">
+                        <table class="w-full border border-gray-300 rounded-lg overflow-hidden">
+                          <thead>
+                            <tr class="bg-green-600 text-white text-center">
+                              <th class="p-3 border border-gray-300">No</th>
+                              <th class="p-3 border border-gray-300">Nama</th>
+                              <th class="p-3 border border-gray-300">Nilai</th>
+                              <th class="p-3 border border-gray-300">Status</th>
+                            </tr>
+                          </thead>
+                          <tbody class="text-center">
+                            <tr class="hover:bg-green-100 transition">
+                              <td class="p-3 border border-gray-300">1</td>
+                              <td class="p-3 border border-gray-300 capitalize">Alfarez</td>
+                              <td class="p-3 border border-gray-300">12345</td>
+                              <td class="p-3 border border-gray-300 text-green-600 font-semibold capitalize">lulus</td>
+                            </tr>
+                            <tr class="hover:bg-green-100 transition">
+                              <td class="p-3 border border-gray-300">2</td>
+                              <td class="p-3 border border-gray-300 capitalize">muhammad ghaizan pratama maulana</td>
+                              <td class="p-3 border border-gray-300">100</td>
+                              <td class="p-3 border border-gray-300 text-green-600 font-semibold capitalize">lulus</td>
+                            </tr>
+                            <tr class="hover:bg-green-100 transition">
+                              <td class="p-3 border border-gray-300">3</td>
+                              <td class="p-3 border border-gray-300 capitalize">Syahid</td>
+                              <td class="p-3 border border-gray-300">70</td>
+                              <td class="p-3 border border-gray-300 text-red-600 font-semibold capitalize">remedial</td>
+                            </tr>
+                            <tr class="hover:bg-green-100 transition">
+                              <td class="p-3 border border-gray-300">4</td>
+                              <td class="p-3 border border-gray-300 capitalize">Muhammad Ridho Duta Pelajar</td>
+                              <td class="p-3 border border-gray-300">90</td>
+                              <td class="p-3 border border-gray-300 text-red-600 font-semibold capitalize">remedial</td>
+                            </tr>
+                            <tr class="hover:bg-green-100 transition">
+                              <td class="p-3 border border-gray-300">5</td>
+                              <td class="p-3 border border-gray-300 capitalize">ErpanDanDika</td>
+                              <td class="p-3 border border-gray-300">70</td>
+                              <td class="p-3 border border-gray-300 text-red-600 font-semibold capitalize">remedial</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+
+                    </div>
+                  </div>
+                </section>
+            </div>
+        </div>
+
+    </main>
+
+    <script>
+        // Basic tab management
+        const tabButtons = {
+            home: document.getElementById('tab-btn-home'),
+            materi: document.getElementById('tab-btn-materi'),
+            quiz: document.getElementById('tab-btn-quiz'),
+            diskusi: document.getElementById('tab-btn-diskusi'),
+            rekap: document.getElementById('tab-btn-rekap')
+        };
+        function hideAllTabs(){
+            document.querySelectorAll('.tab-content').forEach(s => s.classList.add('hidden'));
+            Object.values(tabButtons).forEach(b => b.classList.remove('bg-gray-100', 'font-semibold'));
+        }
+        function switchTab(name){
+            hideAllTabs();
+            const el = document.getElementById('tab-' + name);
+            if(el) el.classList.remove('hidden');
+            if(tabButtons[name]) tabButtons[name].classList.add('bg-gray-100','font-semibold');
+        }
+        // default
+        switchTab('home');
+
+        // Quiz logic
+        function checkQuiz(){
+            const form = document.getElementById('quiz-form');
+            const ans = form.q1.value;
+            const result = document.getElementById('quiz-result');
+            if(!ans){ result.textContent = 'Pilih salah satu jawaban.'; result.className = 'text-yellow-600'; return; }
+            if(ans === 'p'){
+                result.textContent = 'Benar! Tag paragraf adalah <p>.';
+                result.className = 'text-green-600';
+            } else {
+                result.textContent = 'Salah. Coba lagi.';
+                result.className = 'text-red-600';
+            }
+        }
+        function resetQuiz(){
+            document.getElementById('quiz-form').reset();
+            document.getElementById('quiz-result').textContent = '';
+        }
+
+        // Forum logic
+        function postMessage(){
+            const name = document.getElementById('name').value.trim();
+            const msg = document.getElementById('message').value.trim();
+            if(!name || !msg) return;
+            const posts = document.getElementById('posts');
+            // remove "no posts" hint if present
+            if(posts.children.length === 1 && posts.children[0].tagName === 'P' && posts.children[0].classList.contains('text-gray-500')){
+                posts.innerHTML = '';
+            }
+            const card = document.createElement('div');
+            card.className = 'p-3 border rounded bg-gray-50';
+            const header = document.createElement('div');
+            header.className = 'flex justify-between items-center';
+            const who = document.createElement('strong');
+            who.textContent = name;
+            const time = document.createElement('span');
+            time.className = 'text-xs text-gray-500';
+            time.textContent = new Date().toLocaleString();
+            header.appendChild(who); header.appendChild(time);
+            const body = document.createElement('p');
+            body.className = 'mt-2 text-gray-700';
+            body.textContent = msg;
+            card.appendChild(header);
+            card.appendChild(body);
+            posts.prepend(card);
+            document.getElementById('forum-form').reset();
+        }
+        function clearForum(){
+            const posts = document.getElementById('posts');
+            posts.innerHTML = '<p class="text-gray-500">Belum ada diskusi. Jadilah yang pertama.</p>';
+        }
+        // Ubah konten Materi menjadi IPA dan ganti Quiz menjadi soal IPA
+        (function setMateriAndQuizToIPA(){
+            // Materi
+            const materi = document.getElementById('tab-materi');
+            if(materi){
+            materi.innerHTML = `
+                <h3 class="font-bold text-xl mb-3">Pengenalan IPA</h3>
+                <p class="text-gray-700 mb-3">Ilmu Pengetahuan Alam (IPA) mempelajari fenomena alam: materi, energi, dan interaksi antar benda hidup dan tak hidup. Konsep dasar meliputi observasi, pengukuran, serta penggunaan metode ilmiah.</p>
+                <ul class="list-disc list-inside text-gray-700 mb-3">
+                <li>Observasi dan pengukuran akurat</li>
+                <li>Metode ilmiah: pertanyaan → hipotesis → eksperimen → analisis → kesimpulan</li>
+                <li>Besaran dan satuan (contoh: meter, kilogram, sekon)</li>
+                </ul>
+                <p class="text-gray-700 mb-3">Contoh percobaan sederhana: pengaruh cahaya pada pertumbuhan tanaman.</p>
+                <pre class="bg-gray-100 p-3 rounded text-sm overflow-auto">Hipotesis: Tanaman yang mendapat lebih banyak cahaya tumbuh lebih cepat.
+        Variabel:
+        - Independen: intensitas cahaya
+        - Dependen: tinggi tanaman
+        - Kontrol: jenis tanah, jumlah air, jenis tanaman
+        Langkah: Siapkan 2 tanaman sama, beri cahaya berbeda, ukur tinggi tiap hari selama 2 minggu.</pre>
+                <p class="mt-3 text-gray-700">Tugas: Buat hipotesis dan rencanakan eksperimen sederhana berdasarkan contoh di atas.</p>
+                <button onclick="switchTab('quiz')" class="mt-4 bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition">Coba Quiz IPA</button>
+            `;
+            }
+
+            // Quiz -> ganti ke soal IPA
+            const quiz = document.getElementById('tab-quiz');
+            if(quiz){
+            quiz.innerHTML = `
+                <h3 class="font-bold text-xl mb-3">Quiz IPA - Dasar</h3>
+                <form id="quiz-form" class="space-y-4" onsubmit="event.preventDefault(); checkQuiz();">
+                <div>
+                    <p class="text-gray-800">1. Satuan SI untuk panjang adalah?</p>
+                    <div class="space-y-2">
+                    <label class="flex items-center gap-2"><input type="radio" name="q1" value="meter"> <span>Meter (m)</span></label>
+                    <label class="flex items-center gap-2"><input type="radio" name="q1" value="liter"> <span>Liter (L)</span></label>
+                    <label class="flex items-center gap-2"><input type="radio" name="q1" value="gram"> <span>Gram (g)</span></label>
+                    <label class="flex items-center gap-2"><input type="radio" name="q1" value="sekon"> <span>Sekon (s)</span></label>
+                    </div>
+                </div>
+
+                <div>
+                    <p class="text-gray-800">2. Proses perubahan air menjadi uap disebut?</p>
+                    <div class="space-y-2">
+                    <label class="flex items-center gap-2"><input type="radio" name="q2" value="kondensasi"> <span>Kondensasi</span></label>
+                    <label class="flex items-center gap-2"><input type="radio" name="q2" value="penguapan"> <span>Penguapan</span></label>
+                    <label class="flex items-center gap-2"><input type="radio" name="q2" value="presipitasi"> <span>Presipitasi</span></label>
+                    <label class="flex items-center gap-2"><input type="radio" name="q2" value="sublimasi"> <span>Sublimasi</span></label>
+                    </div>
+                </div>
+
+                <div>
+                    <p class="text-gray-800">3. Langkah pertama dalam metode ilmiah biasanya adalah?</p>
+                    <div class="space-y-2">
+                    <label class="flex items-center gap-2"><input type="radio" name="q3" value="hipotesis"> <span>Membuat hipotesis</span></label>
+                    <label class="flex items-center gap-2"><input type="radio" name="q3" value="eksperimen"> <span>Melakukan eksperimen</span></label>
+                    <label class="flex items-center gap-2"><input type="radio" name="q3" value="observasi"> <span>Observasi</span></label>
+                    <label class="flex items-center gap-2"><input type="radio" name="q3" value="analisis"> <span>Analisis data</span></label>
+                    </div>
+                </div>
+
+                <div>
+                    <button type="submit" class="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700">Periksa Jawaban</button>
+                    <button type="button" onclick="resetQuiz()" class="ml-2 bg-gray-200 px-3 py-2 rounded">Reset</button>
+                </div>
+
+                <p id="quiz-result" class="mt-2 font-medium"></p>
+                </form>
+            `;
+            }
+
+            // Override checkQuiz dan resetQuiz untuk quiz IPA
+            window.checkQuiz = function(){
+            const form = document.getElementById('quiz-form');
+            if(!form) return;
+            const a1 = form.q1.value;
+            const a2 = form.q2.value;
+            const a3 = form.q3.value;
+            const result = document.getElementById('quiz-result');
+
+            if(!a1 || !a2 || !a3){
+                result.textContent = 'Lengkapi semua soal terlebih dahulu.';
+                result.className = 'text-yellow-600 mt-2 font-medium';
+                return;
+            }
+
+            let score = 0;
+            if(a1 === 'meter') score++;
+            if(a2 === 'penguapan') score++;
+            if(a3 === 'observasi') score++;
+
+            const percentage = Math.round((score / 3) * 100);
+            let message = `Skor: ${score}/3 (${percentage}%). `;
+
+            if(score === 3){
+                message += 'Bagus! Semua jawaban benar.';
+                result.className = 'text-green-600 mt-2 font-medium';
+            } else if(score === 2){
+                message += 'Hampir benar. Periksa kembali satu jawaban.';
+                result.className = 'text-yellow-600 mt-2 font-medium';
+            } else {
+                message += 'Perlu belajar lagi. Coba ulangi materi.';
+                result.className = 'text-red-600 mt-2 font-medium';
+            }
+
+            result.textContent = message;
+            };
+
+            window.resetQuiz = function(){
+            const form = document.getElementById('quiz-form');
+            if(form) form.reset();
+            const result = document.getElementById('quiz-result');
+            if(result) result.textContent = '';
+            };
+        })();
+    </script>
+
+</body>
+</html>
