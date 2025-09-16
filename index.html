@@ -16,7 +16,7 @@
             <li><button onclick="switchTab('materi')" class="hover:text-gray-200">Materi</button></li>
             <li><button onclick="switchTab('quiz')" class="hover:text-gray-200">Quiz</button></li>
             <li><button onclick="switchTab('diskusi')" class="hover:text-gray-200">Diskusi</button></li>
-            <li><button onclick="switchTab('rekap')" class="hover:text-gray-200">Rekap</button></li>
+            <li><a href="#" class="hover:text-gray-200">Sumber</a></li>
         </ul>
     </nav>
 
@@ -26,7 +26,7 @@
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
             <!-- Card: Materi -->
             <div class="bg-white p-6 rounded-xl shadow-md">
-                <h2 class="font-bold text-lg mb-2">Materi Ipa</h2>
+                <h2 class="font-bold text-lg mb-2">Materi Ipa </h2>
                 <p class="text-gray-600 mb-4">Pengenalan IPA — konsep dasar sains, metode ilmiah, dan percobaan sederhana.</p>
                 <div class="flex gap-3">
                     <button onclick="switchTab('materi')"
@@ -64,33 +64,71 @@
                     <h3 class="font-bold text-xl mb-2">Selamat datang</h3>
                     <p class="text-gray-600">Pilih Materi untuk membaca penjelasan atau Mulai Quiz untuk menguji pemahamanmu.</p>
                 </section>
+                
+                <!-- Materi Content -->
+                <section id="tab-materi" class="tab-content hidden">
+                    <h3 class="font-bold text-xl mb-3">Pengenalan IPA</h3>
+                    <p class="text-gray-700 mb-3">Ilmu Pengetahuan Alam (IPA) mempelajari fenomena alam: materi, energi, dan interaksi antar makhluk hidup serta benda tak hidup. Konsep dasar meliputi observasi, pengukuran, dan metode ilmiah.</p>
+                    <ul class="list-disc list-inside text-gray-700 mb-3">
+                        <li>Observasi dan pencatatan hasil percobaan</li>
+                        <li>Metode ilmiah: pertanyaan → hipotesis → eksperimen → analisis → kesimpulan</li>
+                        <li>Besaran dan satuan (mis. meter, kilogram, sekon)</li>
+                    </ul>
+                    <p class="text-gray-700 mb-3">Contoh percobaan sederhana: pengaruh cahaya terhadap pertumbuhan tanaman.</p>
+                    <pre class="bg-gray-100 p-3 rounded text-sm overflow-auto">Hipotesis: Tanaman yang mendapat lebih banyak cahaya tumbuh lebih cepat.
+Variabel:
+- Independen: intensitas cahaya
+- Dependen: tinggi tanaman
+- Kontrol: jenis tanah, jumlah air, jenis tanaman
+
+Langkah:
+1. Siapkan 2 tanaman sejenis.
+2. Beri perlakuan cahaya berbeda (mis. terang vs redup).
+3. Ukur tinggi setiap hari selama 2 minggu.
+4. Catat hasil dan tarik kesimpulan.</pre>
+                    <p class="mt-3 text-gray-700">Tugas: Buat hipotesis dan rencanakan langkah eksperimen berdasarkan contoh di atas.</p>
+                    <button onclick="switchTab('quiz')" class="mt-4 bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition">Coba Quiz IPA</button>
+                </section>
+
                 <!-- Quiz Content -->
                 <section id="tab-quiz" class="tab-content hidden">
-                    <h3 class="font-bold text-xl mb-3">Quiz Interaktif</h3>
-                    <form id="quiz-form" class="space-y-3" onsubmit="event.preventDefault(); checkQuiz();">
-                        <p class="text-gray-800">1. Tag HTML untuk paragraf adalah?</p>
-                        <div class="space-y-2">
-                            <label class="flex items-center gap-2">
-                                <input type="radio" name="q1" value="p" class="form-radio">
-                                <span>&lt;p&gt;</span>
-                            </label>
-                            <label class="flex items-center gap-2">
-                                <input type="radio" name="q1" value="div" class="form-radio">
-                                <span>&lt;div&gt;</span>
-                            </label>
-                            <label class="flex items-center gap-2">
-                                <input type="radio" name="q1" value="span" class="form-radio">
-                                <span>&lt;span&gt;</span>
-                            </label>
-                            <label class="flex items-center gap-2">
-                                <input type="radio" name="q1" value="h1" class="form-radio">
-                                <span>&lt;h1&gt;</span>
-                            </label>
+                    <h3 class="font-bold text-xl mb-3">Quiz IPA - Dasar</h3>
+                    <form id="quiz-form" class="space-y-4" onsubmit="event.preventDefault(); checkQuiz();">
+                        <div>
+                            <p class="text-gray-800">1. Satuan SI untuk panjang adalah?</p>
+                            <div class="space-y-2">
+                                <label class="flex items-center gap-2"><input type="radio" name="q1" value="meter"> <span>Meter (m)</span></label>
+                                <label class="flex items-center gap-2"><input type="radio" name="q1" value="liter"> <span>Liter (L)</span></label>
+                                <label class="flex items-center gap-2"><input type="radio" name="q1" value="gram"> <span>Gram (g)</span></label>
+                                <label class="flex items-center gap-2"><input type="radio" name="q1" value="sekon"> <span>Sekon (s)</span></label>
+                            </div>
                         </div>
+
+                        <div>
+                            <p class="text-gray-800">2. Proses perubahan air menjadi uap disebut?</p>
+                            <div class="space-y-2">
+                                <label class="flex items-center gap-2"><input type="radio" name="q2" value="kondensasi"> <span>Kondensasi</span></label>
+                                <label class="flex items-center gap-2"><input type="radio" name="q2" value="penguapan"> <span>Penguapan</span></label>
+                                <label class="flex items-center gap-2"><input type="radio" name="q2" value="presipitasi"> <span>Presipitasi</span></label>
+                                <label class="flex items-center gap-2"><input type="radio" name="q2" value="sublimasi"> <span>Sublimasi</span></label>
+                            </div>
+                        </div>
+
+                        <div>
+                            <p class="text-gray-800">3. Langkah pertama dalam metode ilmiah biasanya adalah?</p>
+                            <div class="space-y-2">
+                                <label class="flex items-center gap-2"><input type="radio" name="q3" value="hipotesis"> <span>Membuat hipotesis</span></label>
+                                <label class="flex items-center gap-2"><input type="radio" name="q3" value="eksperimen"> <span>Melakukan eksperimen</span></label>
+                                <label class="flex items-center gap-2"><input type="radio" name="q3" value="observasi"> <span>Observasi</span></label>
+                                <label class="flex items-center gap-2"><input type="radio" name="q3" value="analisis"> <span>Analisis data</span></label>
+                            </div>
+                        </div>
+
                         <div>
                             <button type="submit" class="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700">Periksa Jawaban</button>
                             <button type="button" onclick="resetQuiz()" class="ml-2 bg-gray-200 px-3 py-2 rounded">Reset</button>
                         </div>
+
                         <p id="quiz-result" class="mt-2 font-medium"></p>
                     </form>
                 </section>
@@ -115,9 +153,9 @@
                     </div>
                 </section>
 
-
+                <!-- Rekap Nilai Content (ditambahkan) -->
                 <section id="tab-rekap" class="tab-content hidden">
-                  <div class="min-h-screen flex justify-center items-center">
+                  <div class="min-h-screen flex">
                     <div class="bg-white rounded-lg p-5 w-full max-w-3xl shadow-md">
                       <h1 class="font-bold uppercase text-4xl text-center mb-8">Rekap Nilai</h1>
 
@@ -247,77 +285,6 @@
             const posts = document.getElementById('posts');
             posts.innerHTML = '<p class="text-gray-500">Belum ada diskusi. Jadilah yang pertama.</p>';
         }
-        // Ubah konten Materi menjadi IPA dan ganti Quiz menjadi soal IPA
-        (function setMateriAndQuizToIPA(){
-            // Materi
-            const materi = document.getElementById('tab-materi');
-            if(materi){
-            materi.innerHTML = `
-                <h3 class="font-bold text-xl mb-3">Pengenalan IPA</h3>
-                <p class="text-gray-700 mb-3">Ilmu Pengetahuan Alam (IPA) mempelajari fenomena alam: materi, energi, dan interaksi antar benda hidup dan tak hidup. Konsep dasar meliputi observasi, pengukuran, serta penggunaan metode ilmiah.</p>
-                <ul class="list-disc list-inside text-gray-700 mb-3">
-                <li>Observasi dan pengukuran akurat</li>
-                <li>Metode ilmiah: pertanyaan → hipotesis → eksperimen → analisis → kesimpulan</li>
-                <li>Besaran dan satuan (contoh: meter, kilogram, sekon)</li>
-                </ul>
-                <p class="text-gray-700 mb-3">Contoh percobaan sederhana: pengaruh cahaya pada pertumbuhan tanaman.</p>
-                <pre class="bg-gray-100 p-3 rounded text-sm overflow-auto">Hipotesis: Tanaman yang mendapat lebih banyak cahaya tumbuh lebih cepat.
-        Variabel:
-        - Independen: intensitas cahaya
-        - Dependen: tinggi tanaman
-        - Kontrol: jenis tanah, jumlah air, jenis tanaman
-        Langkah: Siapkan 2 tanaman sama, beri cahaya berbeda, ukur tinggi tiap hari selama 2 minggu.</pre>
-                <p class="mt-3 text-gray-700">Tugas: Buat hipotesis dan rencanakan eksperimen sederhana berdasarkan contoh di atas.</p>
-                <button onclick="switchTab('quiz')" class="mt-4 bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition">Coba Quiz IPA</button>
-            `;
-            }
-
-            // Quiz -> ganti ke soal IPA
-            const quiz = document.getElementById('tab-quiz');
-            if(quiz){
-            quiz.innerHTML = `
-                <h3 class="font-bold text-xl mb-3">Quiz IPA - Dasar</h3>
-                <form id="quiz-form" class="space-y-4" onsubmit="event.preventDefault(); checkQuiz();">
-                <div>
-                    <p class="text-gray-800">1. Satuan SI untuk panjang adalah?</p>
-                    <div class="space-y-2">
-                    <label class="flex items-center gap-2"><input type="radio" name="q1" value="meter"> <span>Meter (m)</span></label>
-                    <label class="flex items-center gap-2"><input type="radio" name="q1" value="liter"> <span>Liter (L)</span></label>
-                    <label class="flex items-center gap-2"><input type="radio" name="q1" value="gram"> <span>Gram (g)</span></label>
-                    <label class="flex items-center gap-2"><input type="radio" name="q1" value="sekon"> <span>Sekon (s)</span></label>
-                    </div>
-                </div>
-
-                <div>
-                    <p class="text-gray-800">2. Proses perubahan air menjadi uap disebut?</p>
-                    <div class="space-y-2">
-                    <label class="flex items-center gap-2"><input type="radio" name="q2" value="kondensasi"> <span>Kondensasi</span></label>
-                    <label class="flex items-center gap-2"><input type="radio" name="q2" value="penguapan"> <span>Penguapan</span></label>
-                    <label class="flex items-center gap-2"><input type="radio" name="q2" value="presipitasi"> <span>Presipitasi</span></label>
-                    <label class="flex items-center gap-2"><input type="radio" name="q2" value="sublimasi"> <span>Sublimasi</span></label>
-                    </div>
-                </div>
-
-                <div>
-                    <p class="text-gray-800">3. Langkah pertama dalam metode ilmiah biasanya adalah?</p>
-                    <div class="space-y-2">
-                    <label class="flex items-center gap-2"><input type="radio" name="q3" value="hipotesis"> <span>Membuat hipotesis</span></label>
-                    <label class="flex items-center gap-2"><input type="radio" name="q3" value="eksperimen"> <span>Melakukan eksperimen</span></label>
-                    <label class="flex items-center gap-2"><input type="radio" name="q3" value="observasi"> <span>Observasi</span></label>
-                    <label class="flex items-center gap-2"><input type="radio" name="q3" value="analisis"> <span>Analisis data</span></label>
-                    </div>
-                </div>
-
-                <div>
-                    <button type="submit" class="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700">Periksa Jawaban</button>
-                    <button type="button" onclick="resetQuiz()" class="ml-2 bg-gray-200 px-3 py-2 rounded">Reset</button>
-                </div>
-
-                <p id="quiz-result" class="mt-2 font-medium"></p>
-                </form>
-            `;
-            }
-
             // Override checkQuiz dan resetQuiz untuk quiz IPA
             window.checkQuiz = function(){
             const form = document.getElementById('quiz-form');
@@ -361,7 +328,6 @@
             const result = document.getElementById('quiz-result');
             if(result) result.textContent = '';
             };
-        })();
     </script>
 
 </body>
